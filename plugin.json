@@ -1,7 +1,7 @@
 {
   "name": "alrighty",
   "version": "0.1.0",
-  "description": "Read, search and draft from your email in Alrighty, the desktop mail app, across Gmail, Outlook and IMAP. Drafts wait for you to click Send.",
+  "description": "Read, search and draft from your email in Alrighty, the desktop mail app, across Gmail, Outlook and IMAP. Drafts wait for you to click Send unless you turn on Send without asking.",
   "author": { "name": "Alrighty", "url": "https://alrighty.me" },
   "homepage": "https://alrighty.me",
   "repository": "https://github.com/wellalrighty/alrighty-plugin",

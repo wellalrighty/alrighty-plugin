@@ -7,8 +7,9 @@ investors this week", and your assistant works from your real mail across Gmail,
 - **Nothing goes through Alrighty's servers.** This plugin talks only to the Alrighty app on the
   same machine, over 127.0.0.1. Mail your assistant reads is sent to its company (Anthropic for
   Claude, OpenAI for ChatGPT) under your account's terms with them.
-- **Your assistant only drafts.** Every email it writes opens in Alrighty for you to review, and
-  only you can click Send.
+- **You click Send.** Every email your assistant writes opens in Alrighty for you to review, and
+  nothing sends until you click Send. Alrighty's Settings has a "Send without asking" switch that
+  lets assistants send on their own; it's off unless you turn it on.
 - **Desktop only.** It runs on your computer, so it works in Claude's apps and Claude Code, and in
   the ChatGPT desktop app and Codex, not on chatgpt.com.
 
