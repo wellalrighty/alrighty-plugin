@@ -1,29 +1,23 @@
-// Alrighty's plugin for Claude (copied from the app's extension/server/index.mjs). Claude
-// runs local MCP servers over stdio; Alrighty serves Streamable HTTP on 127.0.0.1 (src/main/mcp.ts). This passes
-// each message from one to the other, with the token from Alrighty's settings, so a
-// new token in Alrighty needs no setup here. Claude runs it with the Node.js it ships,
-// so it uses Node's standard library only.
-//
-// cli/main.go, the `alrighty mcp` command, does the same job for every other
-// assistant. The two must behave the same: change one, change the other.
+// Alrighty's plugin for Claude and ChatGPT. Assistants run local MCP servers over stdio;
+// Alrighty serves Streamable HTTP on 127.0.0.1. This passes each message from one to the
+// other, with the token from Alrighty's settings, so a new token in Alrighty needs no setup
+// here. It uses Node's standard library only.
 import { readFileSync } from "node:fs";
 import http from "node:http";
 import os from "node:os";
 import path from "node:path";
 import readline from "node:readline";
 
-/** `--dev` targets a development build: its port (src/main/mcp.ts) and userData folder (src/main.ts). */
+/** `--dev` targets a development build of Alrighty: its own port and settings folder. */
 const TARGET = process.argv.includes("--dev")
   ? { port: 47633, folder: "Alrighty Dev" }
   : { port: 47632, folder: "Alrighty" };
 const ENDPOINT = `http://127.0.0.1:${TARGET.port}/mcp`;
-/** The build's userData/settings.json (src/main/settings.ts). */
+/** Alrighty's settings.json on Mac and Linux. */
 const SETTINGS =
-  process.platform === "win32"
-    ? path.join(process.env.APPDATA ?? "", TARGET.folder, "settings.json")
-    : process.platform === "darwin"
-      ? path.join(os.homedir(), "Library", "Application Support", TARGET.folder, "settings.json")
-      : path.join(process.env.XDG_CONFIG_HOME || path.join(os.homedir(), ".config"), TARGET.folder, "settings.json");
+  process.platform === "darwin"
+    ? path.join(os.homedir(), "Library", "Application Support", TARGET.folder, "settings.json")
+    : path.join(process.env.XDG_CONFIG_HOME || path.join(os.homedir(), ".config"), TARGET.folder, "settings.json");
 const VERSION = JSON.parse(
   readFileSync(new URL("../.claude-plugin/plugin.json", import.meta.url), "utf8"),
 ).version;
@@ -32,7 +26,7 @@ const RETRY_MS = 5000;
 
 const NOT_RUNNING =
   "Alrighty isn't open, or its connection for assistants is off. Open Alrighty and turn it on in Settings.";
-/** Alrighty stamps each answer with its tool list's revision (src/main/mcp.ts). Node lowercases header names. */
+/** Alrighty stamps each answer with its tool list's revision. Node lowercases header names. */
 const REVISION_HEADER = "alrighty-tools";
 const LIST_CHANGED = { jsonrpc: "2.0", method: "notifications/tools/list_changed" };
 /** Set while Alrighty can't be reached; cleared once it answers again. */
@@ -60,7 +54,7 @@ function token() {
   }
 }
 
-/** Posts one message to Alrighty. No timeout: Alrighty times out its own window steps (main/agent.ts). */
+/** Posts one message to Alrighty. No timeout: Alrighty times out its own window steps. */
 function post(message) {
   const body = JSON.stringify(message);
   return new Promise((resolve, reject) => {
@@ -100,7 +94,7 @@ function write(message) {
 const fail = (id, message) => write({ jsonrpc: "2.0", id, error: { code: -32000, message } });
 
 /**
- * Answers for Claude while Alrighty is closed, so the extension still starts. It
+ * Answers for the assistant while Alrighty is closed, so the plugin still starts. It
  * offers no tools until Alrighty answers, then tells Claude the list changed.
  */
 function answerOffline(message) {
