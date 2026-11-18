@@ -1,0 +1,20 @@
+{
+  "name": "alrighty",
+  "version": "0.1.0",
+  "description": "Read, search and draft from your email in Alrighty, the desktop mail app, across Gmail, Outlook and IMAP. Drafts wait for you to click Send.",
+  "author": {
+    "name": "Alrighty",
+    "url": "https://alrighty.me"
+  },
+  "homepage": "https://alrighty.me",
+  "repository": "https://github.com/wellalrighty/alrighty-plugin",
+  "license": "MIT",
+  "keywords": [
+    "email",
+    "mail",
+    "inbox",
+    "gmail",
+    "outlook",
+    "imap"
+  ]
+}

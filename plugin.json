@@ -1,0 +1,30 @@
+{
+  "name": "alrighty",
+  "version": "0.1.0",
+  "description": "Read, search and draft from your email in Alrighty, the desktop mail app, across Gmail, Outlook and IMAP. Drafts wait for you to click Send.",
+  "author": { "name": "Alrighty", "url": "https://alrighty.me" },
+  "homepage": "https://alrighty.me",
+  "repository": "https://github.com/wellalrighty/alrighty-plugin",
+  "license": "MIT",
+  "keywords": ["email", "mail", "inbox", "gmail", "outlook", "imap"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Alrighty",
+        "shortDescription": "Read, search and draft from your email in Alrighty",
+        "developerName": "Alrighty",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "defaultPrompt": [
+          "What am I waiting on in my email?",
+          "Draft replies to everything from investors this week."
+        ],
+        "websiteURL": "https://alrighty.me",
+        "privacyPolicyURL": "https://alrighty.me/privacy",
+        "termsOfServiceURL": "https://alrighty.me/terms",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png"
+      }
+    }
+  }
+}

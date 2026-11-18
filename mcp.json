@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "alrighty": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${PLUGIN_ROOT}/server/index.mjs"],
+      "cwd": "${PLUGIN_ROOT}"
+    }
+  }
+}

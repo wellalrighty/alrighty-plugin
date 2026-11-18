@@ -1,0 +1,11 @@
+{
+  "name": "alrighty",
+  "owner": { "name": "Alrighty", "url": "https://alrighty.me" },
+  "plugins": [
+    {
+      "name": "alrighty",
+      "source": "./",
+      "description": "Read, search and draft from your email in Alrighty, across Gmail, Outlook and IMAP."
+    }
+  ]
+}
